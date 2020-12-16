@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(Team());
@@ -7,7 +8,7 @@ void main() {
 
 
 class Team extends StatelessWidget {
-  var color1 = const Color(0xffFBD00D);
+  var color1 = const Color(0xffE1D342);
   var color = const Color(0xff0E1C36);
   @override
   Widget build(BuildContext context) {
@@ -35,65 +36,45 @@ class Team extends StatelessWidget {
 
                       Row(
                         children: [
-                          Expanded(
-                                child: Text('Aakele',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
+                             Text('Aakele',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
                                 ),
-                              ),
-                          Expanded(child: SizedBox()),
-                          Expanded(
+                          Expanded(child:SizedBox()),
+                                 Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
+                        ],
+                      ),
+                      Row(
+                        children: [
 
-                                child: Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
-                              ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                                child: Text('Koyi nahi',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
+                                Text('Koyi nahi',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
                                 ),
-                          ),
                           Expanded(child: SizedBox()),
+                                Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
 
-                          Expanded(
-                                child: Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
-                              ),
                         ],
                       ),
                       Row(
                         children: [
-                          Expanded(
-                                child: Text('Koyi mil gaya',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
-                                ),
+                                Text('Koyi mil gaya',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
                           ),
                           Expanded(child: SizedBox()),
-                          Expanded(
-                                child: Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
-                              ),
+                          Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
                         ],
                       ),
                       Row(
                         children: [
-                          Expanded(
-                                child: Text('Chal jhoote',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
+                                Text('Chal jhoote',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
                                 ),
-                          ),
                           Expanded(child: SizedBox()),
-                          Expanded(
-                                child: Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
-                              ),
+                               Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
                         ],
                       ),
                       Row(
                         children: [
-                          Expanded(
-                                child: Text('kyaa yaar smh',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
+                                Text('kyaa yaar smh',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
                                 ),
-                          ),
                           Expanded(child: SizedBox()),
+                          Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
 
-                          Expanded(
-                                child: Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
-                              ),
                         ],
                       ),
                     ],
@@ -133,7 +114,7 @@ class Team extends StatelessWidget {
 
                     child: Image.asset('Images/image 106.png',height: 92,width: 92,),
                     onPressed: (){
-
+                      launch('https://discord.gg/xNQpt7PCGP');
                   },
                   )
 
