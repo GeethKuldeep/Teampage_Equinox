@@ -1,15 +1,72 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:teampage/About_us.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  runApp(Team());
+  runApp(Aboutus());
 }
 
 
-class Team extends StatelessWidget {
+class SizeConfig {
+  static MediaQueryData _mediaQueryData;
+  static double screenWidth;
+  static double screenHeight;
+  static double blockSizeHorizontal;
+  static double blockSizeVertical;
+  static double _safeAreaHorizontal;
+  static double _safeAreaVertical;
+  static double safeBlockHorizontal;
+  static double safeBlockVertical;
+
+  void init(BuildContext context){
+    _mediaQueryData = MediaQuery.of(context);
+    screenWidth = _mediaQueryData.size.width;
+    screenHeight = _mediaQueryData.size.height;
+    blockSizeHorizontal = screenWidth/100;
+    blockSizeVertical = screenHeight/100;
+    _safeAreaHorizontal = _mediaQueryData.padding.left +
+        _mediaQueryData.padding.right;
+    _safeAreaVertical = _mediaQueryData.padding.top +
+        _mediaQueryData.padding.bottom;
+    safeBlockHorizontal = (screenWidth - _safeAreaHorizontal)/100;
+    safeBlockVertical = (screenHeight - _safeAreaVertical)/100;
+  }
+}
+
+class Team extends StatefulWidget {
+  @override
+  _TeamState createState() => _TeamState();
+}
+
+class _TeamState extends State<Team> {
+  @override
+  void initState() {
+      getdata();
+    super.initState();
+  }
   var color1 = const Color(0xffE1D342);
   var color = const Color(0xff0E1C36);
+  var teammate1='';
+  var teammate2='';
+  var teammate3='';
+  var teammate4='';
+  var teamname='';
+  var username='';
+  var docID= 'BtX9xm9ioncqthMpc6j5lZa86Of1';
+
+void getdata()async {
+  await Firestore.instance.collection('users').document('BtX9xm9ioncqthMpc6j5lZa86Of1').get().then((DocumentSnapshot docSnapshot) => {
+  teammate1= docSnapshot.data['Teammate1'],
+  teammate2= docSnapshot.data['Teammate2'],
+  teammate3= docSnapshot.data['Teammate3'],
+  teammate4=docSnapshot.data['Teammate4'],
+  teamname= docSnapshot.data['Team_name'],
+  username= docSnapshot.data['username'],
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +82,7 @@ class Team extends StatelessWidget {
               SizedBox(height: 35,),
               Text("We're called",style: GoogleFonts.raleway(fontSize: 20,color:color1 ,fontWeight: FontWeight.bold),),
               SizedBox(height: 13,),
-              Text('Nah Bro',style: GoogleFonts.raleway(fontSize: 28,color: Colors.white),),
+              Text(teamname,style: GoogleFonts.raleway(fontSize: 28,color: Colors.white),),
               SizedBox(height: 35,),
               Text("Our Stars",style: GoogleFonts.raleway(fontSize: 20,color:color1 ,fontWeight: FontWeight.bold),),
               Padding(
@@ -36,7 +93,7 @@ class Team extends StatelessWidget {
 
                       Row(
                         children: [
-                             Text('Aakele',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
+                             Text(username,style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
                                 ),
                           Expanded(child:SizedBox()),
                                  Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
@@ -45,7 +102,7 @@ class Team extends StatelessWidget {
                       Row(
                         children: [
 
-                                Text('Koyi nahi',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
+                                Text(teammate1,style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
                                 ),
                           Expanded(child: SizedBox()),
                                 Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
@@ -54,7 +111,7 @@ class Team extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                                Text('Koyi mil gaya',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
+                                Text(teammate2,style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
                           ),
                           Expanded(child: SizedBox()),
                           Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
@@ -62,7 +119,7 @@ class Team extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                                Text('Chal jhoote',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
+                                Text(teammate3,style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
                                 ),
                           Expanded(child: SizedBox()),
                                Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
@@ -70,7 +127,7 @@ class Team extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                                Text('kyaa yaar smh',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
+                                Text(teammate4,style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),
                                 ),
                           Expanded(child: SizedBox()),
                           Text('19BEC0123',style: GoogleFonts.raleway(fontSize: 15,color: Colors.white),),
@@ -134,7 +191,7 @@ class Team extends StatelessWidget {
                     ),
                     child: Text('My ID',style: GoogleFonts.raleway(color: Colors.white,fontSize: 15),),
                     onPressed:(){
-
+                        getdata();
                     },
                   ),
                 ),
